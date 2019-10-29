@@ -5,6 +5,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"os"
 
 	"github.com/google/subcommands"
@@ -33,7 +34,7 @@ func (e *encrypter) SetFlags(f *flag.FlagSet) {
 
 func (e *encrypter) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}) subcommands.ExitStatus {
 	args := f.Args()
-	if len(args) < 2 {
+	if len(args) == 0 {
 		fmt.Printf("lacked mandatory parameter(s)\n")
 		return subcommands.ExitFailure
 	}
@@ -45,8 +46,13 @@ func (e *encrypter) Execute(_ context.Context, f *flag.FlagSet, _ ...interface{}
 		return subcommands.ExitFailure
 	}
 
-	payloadParamReader := &paramReader{args[1]}
-	payload, err := payloadParamReader.GetValue()
+	var payload []byte
+	if len(args) >= 2 {
+		payloadParamReader := &paramReader{args[1]}
+		payload, err = payloadParamReader.GetValue()
+	} else {
+		payload, err = ioutil.ReadAll(os.Stdin)
+	}
 	if err != nil {
 		fmt.Printf("failed to read a payload: %s\n", err)
 		return subcommands.ExitFailure
