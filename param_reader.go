@@ -21,6 +21,5 @@ func (pr *paramReader) isFile() bool {
 }
 
 func (pr *paramReader) readFile() ([]byte, error) {
-	path := strings.Replace(pr.Param, "@", "", 1)
-	return ioutil.ReadFile(path)
+	return ioutil.ReadFile(pr.Param[1:])
 }
