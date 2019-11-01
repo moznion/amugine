@@ -1,4 +1,4 @@
-amugine
+amugine [![CircleCI](https://circleci.com/gh/moznion/amugine.svg?style=svg)](https://circleci.com/gh/moznion/amugine)
 ==
 
 A simple encrypter/decrypter CLI tool. This tool provides GPG passphrase based encryption feature.
