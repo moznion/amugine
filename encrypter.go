@@ -25,7 +25,8 @@ func (e *encrypter) Synopsis() string {
 
 func (e *encrypter) Usage() string {
 	return `encrypt <key> <payload>:
-	Encrypt a given payload. If a parameter has "@" prefix, it will be handled as the filepath and read that.
+	Encrypt a given payload. It supports to give payload through an argument and STDIN (example: "cat payload.txt | amugine encrypt <key>").
+	If a parameter has "@" prefix, it will be handled as the filepath and read that.
 `
 }
 

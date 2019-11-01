@@ -1,9 +1,16 @@
 amugine
 ==
 
-A simple encrypter/decrypter CLI tool.
+A simple encrypter/decrypter CLI tool. This tool provides GPG passphrase based encryption feature.
 
 Pre-compiled binaries are here: https://github.com/moznion/amugine/releases
+
+Description
+--
+
+This tool provides GPG passphrase based encryption feature (i.e. it acts like `gpg -c` and `gpg -d --batch --passphrase-fd 0` commands).
+
+It's easy to use such a feature by one-binary and to combine existing other tools which use GPG.
 
 Usage
 --
@@ -22,7 +29,8 @@ Subcommands:
 
 ```
 encrypt <key> <payload>:
-        Encrypt a given payload. If a parameter has "@" prefix, it will be handled as the filepath and read that.
+        Encrypt a given payload. It supports to give payload through an argument and STDIN (example: "cat payload.txt | amugine encrypt <key>").
+        If a parameter has "@" prefix, it will be handled as the filepath and read that.
 ```
 
 ```
